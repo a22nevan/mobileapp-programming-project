@@ -84,12 +84,10 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
-        Log.d("MainActivity", json);
+        Log.d("MainActivity", "JSON data received: " + json); // Log the JSON data received
         Type type = new TypeToken<List<Produce>>() {}.getType();
         produceArrayList = gson.fromJson(json, type);
-
-        Log.d("MainActivity", "produceArrayList size: " + produceArrayList.size());
-
-        //adapter.notifyDataSetChanged();
+        adapter.setItems(produceArrayList); // Update adapter with new data
+        adapter.notifyDataSetChanged(); // Notify adapter of data set change
     }
 }
