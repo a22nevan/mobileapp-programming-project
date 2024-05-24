@@ -32,8 +32,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Produce produce = items.get(position);
-        holder.title.setText(produce.getName());
-        holder.category.setText("Type: " +produce.getCategory()); // New
+        holder.title.setText(produce.getName() + "\n");
+        holder.category.setText("Type: " +produce.getCategory() + System.getProperty("line.separator")); // New
         holder.size.setText("Height: " + String.valueOf(produce.getSize()) + "cm"); // New
         holder.cost.setText("Price: " + String.valueOf(produce.getCost()) + " kr"); // New
         holder.auxData.setText("Harvesting Season: " + produce.getAuxData()); // New

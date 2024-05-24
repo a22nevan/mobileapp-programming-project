@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        new JsonFile(this,this).execute(JSON_FILE);
         //new JsonTask(this).execute(JSON_URL);
 
         adapter = new RecyclerViewAdapter(this, produceArrayList, new RecyclerViewAdapter.OnClickListener() {
@@ -61,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         view.setLayoutManager(layoutManager);
         view.setAdapter(adapter);
+
+        new JsonFile(this,this).execute(JSON_FILE);
     }
 
     @Override
@@ -86,5 +87,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Log.d("MainActivity", json);
         Type type = new TypeToken<List<Produce>>() {}.getType();
         produceArrayList = gson.fromJson(json, type);
+
+        Log.d("MainActivity", "produceArrayList size: " + produceArrayList.size());
+
+        //adapter.notifyDataSetChanged();
     }
 }
