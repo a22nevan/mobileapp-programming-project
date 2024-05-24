@@ -35,10 +35,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Produce produce = items.get(position);
         Log.d("RecyclerViewAdapter", "Binding item at position " + position + " with name: " + produce.getName());
         holder.title.setText(produce.getName());
-        holder.category.setText("Type: " +produce.getCategory()); // New
-        holder.size.setText("Height: " + String.valueOf(produce.getSize()) + "cm"); // New
-        holder.cost.setText("Price: " + String.valueOf(produce.getCost()) + " kr"); // New
-        holder.auxData.setText("Harvesting Season: " + produce.getAuxData()); // New
+        holder.category.setText("Type: " +produce.getCategory());
+        holder.size.setText("Height: " + String.valueOf(produce.getSize()) + "cm");
+        holder.cost.setText("Price: " + String.valueOf(produce.getCost()) + " kr");
+        holder.auxData.setText("Harvesting Season: " + produce.getAuxData());
     }
 
     @Override
@@ -74,8 +74,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public void setItems(List<Produce> items) {
-        this.items.clear(); // Clear existing items
-        this.items.addAll(items); // Add all items from the new list
+        this.items.clear();
+        this.items.addAll(items);
     }
 
 

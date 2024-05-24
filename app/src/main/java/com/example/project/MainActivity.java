@@ -3,7 +3,6 @@ package com.example.project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.JsonReader;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -32,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     RecyclerViewAdapter adapter;
 
-
-    private WebView myWebView;
     public void showInternalWebPage(){
         Intent intent = new Intent(MainActivity.this, AboutActivity.class);
         startActivity(intent);
@@ -45,8 +42,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //new JsonTask(this).execute(JSON_URL);
+        getSupportActionBar().setTitle("Buy our plants!!!");
 
         adapter = new RecyclerViewAdapter(this, produceArrayList, new RecyclerViewAdapter.OnClickListener() {
             @Override
@@ -62,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         view.setAdapter(adapter);
 
         new JsonFile(this,this).execute(JSON_FILE);
+        //new JsonTask(this).execute(JSON_URL);
     }
 
     @Override
@@ -84,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
-        Log.d("MainActivity", "JSON data received: " + json); // Log the JSON data received
+        Log.d("MainActivity", "JSON data received: " + json);
         Type type = new TypeToken<List<Produce>>() {}.getType();
         produceArrayList = gson.fromJson(json, type);
-        adapter.setItems(produceArrayList); // Update adapter with new data
-        adapter.notifyDataSetChanged(); // Notify adapter of data set change
+        adapter.setItems(produceArrayList);
+        adapter.notifyDataSetChanged();
     }
 }
