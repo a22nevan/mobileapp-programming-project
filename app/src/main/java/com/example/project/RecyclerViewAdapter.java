@@ -31,7 +31,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.title.setText(items.get(position).getName());
+        Produce produce = items.get(position);
+        holder.title.setText(produce.getName());
+        holder.category.setText("Type: " +produce.getCategory()); // New
+        holder.size.setText("Height: " + String.valueOf(produce.getSize()) + "cm"); // New
+        holder.cost.setText("Price: " + String.valueOf(produce.getCost()) + " kr"); // New
+        holder.auxData.setText("Harvesting Season: " + produce.getAuxData()); // New
     }
 
     @Override
@@ -41,11 +46,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
+        TextView category;
+        TextView size;
+        TextView cost;
+        TextView auxData;
 
         ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             title = itemView.findViewById(R.id.itemTitle);
+            category = itemView.findViewById(R.id.itemCategory);
+            size = itemView.findViewById(R.id.itemSize);
+            cost = itemView.findViewById(R.id.itemCost);
+            auxData = itemView.findViewById(R.id.itemAuxData);
         }
 
         @Override

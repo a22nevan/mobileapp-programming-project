@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         });
 
         RecyclerView view = findViewById(R.id.produceList);
-        view.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        view.setLayoutManager(layoutManager);
         view.setAdapter(adapter);
     }
 
